@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Dream XI</title>
+    <style>
+        /* General body styling */
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header styling */
+        header {
+            background: linear-gradient(90deg, #ff5e57, #ff8a65);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        /* Category section styling */
+        .category {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .category h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .player-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .player-card {
+            position: relative;
+            height: 350px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .player-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add a semi-transparent overlay to make text readable */
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            z-index: 1;
+        }
+
+        /* Text container inside the player card */
+        .player-info {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .player-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .player-info h4 {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .player-info p {
+            font-size: 16px;
+        }
+
+        /* Button styling */
+        .learn-more {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #ff8a65;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .learn-more:hover {
+            background-color: #ff5e57;
+        }
+
+        /* Example background images for player cards */
+        .buffon { background-image: url('https://a.espncdn.com/photo/2023/0803/r1205648_1296x729_16-9.jpg'); }
+        .maldini { background-image: url('https://img.dailymail.co.uk/i/pix/2007/05_02/paoloDM2105_468x530.jpg'); }
+        .zanetti { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWvOI5UWtO8L3dZ6-dHDSlqzRzNWTPYczCXA&s'); }
+        .beckenbauer { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y43vtES3d0uMowx4DbKa4JaOtQ0YvI9TdQ&s'); }
+        .baresi { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0DKHcvhXS7mdlLNHxTL5UWcYFai2vS8-TdQ&s'); }
+        .gentile { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTurHwioDtKr7OFSJBxXWd2D9k0muORs581iA&s'); }
+        .zidane { background-image: url('https://i.pinimg.com/736x/5d/5b/7a/5d5b7af97aaa5d9a7c8fa23a671fbd01.jpg'); }
+        .matthaeus { background-image: url('https://allbluedaze.com/wp-content/uploads/2016/09/matthaus.jpeg'); }
+        .ronaldo { background-image: url('https://i.guim.co.uk/img/media/fe0c6876fb2af3f43af27141fd9df67e3d39e896/356_88_1900_1140/master/1900.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=1625e248320c4cef4af165e89c365d89'); }
+        .messi { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKVw90TJSMhvIeTef-xWLU9Qun1G-ip_gREg&s'); }
+        .distefano { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy7gEao9638NG12_C7BFLkZSBI6nAVYN7K4Q&s'); }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #ff8a65;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Dream XI Football Team</h1>
+        <p>Personal Project</p>
+    </header>
+
+    <section>
+        <!-- Defense Section -->
+        <div class="category">
+            <h2><a href="defense.html" style="color: inherit; text-decoration: none;">Defense</a></h2>
+            <div class="player-list">
+                <!-- Buffon card -->
+                <div class="player-card buffon">
+                    <div class="player-info">
+                        <h3>Giannluigi Buffon</h3>
+                        <h4>Goalkeeper</h4>
+                        <p>The legendary Italian goalkeeper known for his consistency and leadership.</p>
+                        <a href="https://en.wikipedia.org/wiki/Gianluigi_Buffon" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Maldini card -->
+                <div class="player-card maldini">
+                    <div class="player-info">
+                        <h3>Paolo Maldini</h3>
+                        <h4>Leftback</h4>
+                        <p>One of the greatest defenders in football history, a symbol of AC Milan.</p>
+                        <a href="https://en.wikipedia.org/wiki/Paolo_Maldini" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Zanetti card -->
+                <div class="player-card zanetti">
+                    <div class="player-info">
+                        <h3>Javier Zanetti</h3>
+                        <h4>Rightback</h4>
+                        <p>Inter Milan's ever-reliable captain, famed for his stamina and dedication.</p>
+                        <a href="https://en.wikipedia.org/wiki/Javier_Zanetti" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Beckenbauer card -->
+                <div class="player-card beckenbauer">
+                    <div class="player-info">
+                        <h3>Franz Beckenbauer</h3>
+                        <h4>Centerback</h4>
+                        <p>Nicknamed 'Der Kaiser', Beckenbauer revolutionized the sweeper position.</p>
+                        <a href="https://en.wikipedia.org/wiki/Franz_Beckenbauer" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Baresi card -->
+                <div class="player-card baresi">
+                    <div class="player-info">
+                        <h3>Franco Baresi</h3>
+                        <h4>Centerback</h4>
+                        <p>The iconic leader of AC Milan's defense during its golden era.</p>
+                        <a href="https://en.wikipedia.org/wiki/Franco_Baresi" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Midfield Section -->
+        <div class="category">
+            <h2><a href="midfield.html" style="color: inherit; text-decoration: none;">Midfield</a></h2>
+            <div class="player-list">
+                <!-- Gentile card -->
+                <div class="player-card gentile">
+                    <div class="player-info">
+                        <h3>Claudio Gentile</h3>
+                        <h4>Midfielder</h4>
+                        <p>Famed for his tough-tackling, man-marking style, an Italian football icon.</p>
+                        <a href="https://en.wikipedia.org/wiki/Claudio_Gentile" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Zidane card -->
+                <div class="player-card zidane">
+                    <div class="player-info">
+                        <h3>Zinedine Zidane</h3>
+                        <h4>Midfielder</h4>
+                        <p>The French maestro who dazzled with his creativity and elegance on the ball.</p>
+                                             <a href="https://en.wikipedia.org/wiki/Zinedine_Zidane" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Matthaeus card -->
+                <div class="player-card matthaeus">
+                    <div class="player-info">
+                        <h3>Lothar Matthaeus</h3>
+                        <h4>Midfielder</h4>
+                        <p>Versatile and tireless, Matthaeus is regarded as one of the greatest midfielders.</p>
+                        <a href="https://en.wikipedia.org/wiki/Lothar_Matth%C3%A4us" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attack Section -->
+        <div class="category">
+            <h2><a href="attack.html" style="color: inherit; text-decoration: none;">Attack</a></h2>
+            <div class="player-list">
+                <!-- Ronaldo card -->
+                <div class="player-card ronaldo">
+                    <div class="player-info">
+                        <h3>Cristiano Ronaldo</h3>
+                        <h4>Left Winger</h4>
+                        <p>One of the most decorated players, known for his goal-scoring prowess.</p>
+                        <a href="https://en.wikipedia.org/wiki/Cristiano_Ronaldo" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Messi card -->
+                <div class="player-card messi">
+                    <div class="player-info">
+                        <h3>Lionel Messi</h3>
+                        <h4>Right Winger</h4>
+                        <p>Regarded as one of the greatest players of all time, known for his dribbling.</p>
+                        <a href="https://en.wikipedia.org/wiki/Lionel_Messi" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Di Stefano card -->
+                <div class="player-card distefano">
+                    <div class="player-info">
+                        <h3>Alfredo Di Stefano</h3>
+                        <h4>Striker</h4>
+                        <p>A true legend of Real Madrid, known for his versatility and skill.</p>
+                        <a href="https://en.wikipedia.org/wiki/Alfredo_Di_St%C3%A9fano" class="learn-more" target="_blank">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Football Dream XI. Learn more about each player by clicking on their position. <br> Sourish </p>
+    </footer>
+
+</body>
+</html>
+
+
+
